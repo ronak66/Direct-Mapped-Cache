@@ -14,7 +14,7 @@ set autoscale                          # Scale axes automatically
 set xtic auto                          # set xtics automatically
 set ytic auto                          # set ytics automatically
 
-
+set key outside
 set output 'gzip.png'                # Set output file
 
 set datafile separator ","           # Uncomment when using CSV files
@@ -23,7 +23,7 @@ set datafile separator ","           # Uncomment when using CSV files
 #set ytic add(1.1, 2.2)               # Add ytics at points
 
 set xr[0:0.6]
-set yr[0:70]
+set yr[0:55]
 
 set title "Miss Rate Change"
 set xlabel "Total Instruction (in Millions)"                 # Set X axis label
