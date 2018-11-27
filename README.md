@@ -11,3 +11,6 @@ This plot is showing how miss rate for a specific compiler varies with number of
 ![Plot2](plot2.png "Plot2")
 
 This plot is analysis of how "miss rate" change with varying number of blocks in the cache for GCC compiler 
+## Collaborators
+1. [`Nithin Raj`](https://github.com/nithinr07)
+2. [`R Arvind`](https://github.com/r-arvind)
