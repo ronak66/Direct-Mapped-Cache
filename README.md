@@ -7,3 +7,7 @@ The cache is designed to hold 256 BLocks, each containing 16 words (words = 32-b
 ![Plot](plot.png "Plot")
 
 This plot is showing how miss rate for a specific compiler varies with number of instructions given it to run
+
+![Plot2](plot2.png "Plot2")
+
+This plot is analysis of how "miss rate" change with varying number of blocks in the cache for GCC compiler 
