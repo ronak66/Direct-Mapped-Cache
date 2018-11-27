@@ -6,6 +6,10 @@ module main_tb();
     wire hit;
 
     integer count = 0;
+    integer fp1;
+    integer temp;
+    integer instructionCount;
+    reg [31:0] A;
 
     main uut(
     .clk(clk),
@@ -14,41 +18,24 @@ module main_tb();
     .dataOut(dataOut)
     );
     initial begin 
-        // $monitor("clk = %b hit = %b dataout = %b",clk,hit,dataOut);
+        fp1 = $fopen("instruction_sets/gcc.txt", "r");
         clk = 0;
         count = 1;
-        // address = 32'h1fffff50; #20;
-        // $display("clk = %b  dataout = %b",clk,dataOut);
-        address = 32'h1fffff17; #10;
-        address = 32'h1f2fff17; #10;
-        address = 32'h1f2fff07; #10;
-        address = 32'h1f2fff27; #10;
-        address = 32'h1f2fff27; #10;
-        address = 32'h1f2fff27; #10;
-        address = 32'h1f2fff27; #10;
-        address = 32'h112fff20; #10;
-
-        
-        #200; $finish;
+        instructionCount = 0;
+        while(!$feof(fp1)) begin
+            temp = $fscanf(fp1,"%h\n",A);
+            address = A; #10;
+            instructionCount = instructionCount + 1;
+        end
+        $fclose(fp1);
+        $finish;
     end
 
     always begin
         #2 clk = ~clk;
         if(clk == 1 && hit == 0)
             count = count + 1;
-        $display("clk = %b hit = %b read = %b address = %h dataout = %h count = %d",clk,hit,uut.read,address,dataOut,count);
+        // $display("clk = %b hit = %b read = %b address = %h dataout = %h count = %d",clk,hit,uut.read,address,dataOut,count);
+        $display("%d %d",instructionCount,count);
     end
-    // integer fp1;
-    // integer temp;
-    // reg[31:0]A;
-    // initial begin
-      // fp1 = $fopen("gcc.trace", "r");
-      // while(!$feof(fp1)) begin
-      //   temp = $fscanf(fp1,"%h\n",A);
-      //   $display("%h",A);
-      //   #10;
-      // end
-      // $fclose(fp1);
-      // #100 $finish;
-    // end
 endmodule
